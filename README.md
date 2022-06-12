@@ -1,2 +1,2 @@
 # TungPat
-TungPat is an offline educational game to improve your math skills in counting. games can be played for children and adults, learn to count while playing offline counting games.
+TungPat is a math game that might help you improve your math abilities. Counting games are fun for both kids and adults, and they can help people practice counting quickly.
