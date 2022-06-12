@@ -78,7 +78,7 @@
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/blue"
                 android:textColor="@color/black"
-                android:textSize="80sp" />
+                android:textSize="40sp" />
 
             <Button
                 android:id="@+id/button1"
@@ -91,7 +91,7 @@
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/pink"
                 android:textColor="@color/black"
-                android:textSize="80sp" />
+                android:textSize="40sp" />
 
             <Button
                 android:id="@+id/button2"
@@ -104,7 +104,7 @@
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/purple"
                 android:textColor="@color/black"
-                android:textSize="80sp" />
+                android:textSize="40sp" />
 
             <Button
                 android:id="@+id/button3"
@@ -117,7 +117,7 @@
                 android:layout_gravity="fill"
                 android:backgroundTint="@color/lime"
                 android:textColor="@color/black"
-                android:textSize="80sp" />
+                android:textSize="40sp" />
         </GridLayout>
 
         <TextView
