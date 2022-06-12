@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         button1.setText(String.valueOf(answer.get(1)));
         button2.setText(String.valueOf(answer.get(2)));
         button3.setText(String.valueOf(answer.get(3)));
+        binding.pointsTextView2.setText(getString(R.string.results, score, numberOfQuestions));
+        numberOfQuestions++;
     }
 
     private void chooseAnswer(int TAG){
@@ -117,5 +119,8 @@ public class MainActivity extends AppCompatActivity {
             correct.setText(getString(R.string.wrong));
         }
         questionGenerator();
+        if (numberOfQuestions == 10){
+            finish();
+        }
     }
 }
