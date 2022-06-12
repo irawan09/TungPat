@@ -3,9 +3,12 @@
     <string name="mulai">Mulai!</string>
     <string name="_0_0">0/0</string>
     <string name="_10s">10s</string>
+    <string name="_0s">0s</string>
     <string name="correct">Benar!</string>
     <string name="wrong">Salah!</string>
     <string name="plus">%1$d + %2$d</string>
     <string name="results">%1$d / %2$d</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="final_score">Your score: %1$d/%2$d</string>
+    <string name="timer">%1$d s"</string>
+    <string name="main_lagi">Main Lagi</string>
 </resources>

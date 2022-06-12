@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,7 @@ public class AdditionFragment extends Fragment {
         timer = binding.timerTextView;
         points = binding.pointsTextView2;
         correct.setVisibility(View.INVISIBLE);
+        binding.retry.setVisibility(View.INVISIBLE);
     }
 
     private void play(){
@@ -89,6 +91,29 @@ public class AdditionFragment extends Fragment {
         binding.pointsTextView2.setText(getString(R.string.results, score, numberOfQuestions));
         numberOfQuestions++;
 
+
+        new CountDownTimer(15100, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timer.setText(getString(R.string.timer, millisUntilFinished/1000));
+                question.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFinish() {
+
+                binding.retry.setVisibility(View.VISIBLE);
+                timer.setText(getString(R.string._0s));
+                question.setVisibility(View.INVISIBLE);
+                points.setText(getString(R.string.final_score, score, numberOfQuestions));
+
+                binding.retry.setOnClickListener(view -> {
+                    play();
+                });
+            }
+        }.start();
+
         binding.button0.setOnClickListener(view1 -> {
             Tag = 0;
             chooseAnswer(Tag);
@@ -119,8 +144,5 @@ public class AdditionFragment extends Fragment {
             correct.setTextColor(getResources().getColor(R.color.red));
         }
         play();
-//        if (numberOfQuestions == 10){
-//
-//        }
     }
 }
