@@ -89,7 +89,6 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:background="@color/blue"
-            android:tag="0"
             android:textColor="@color/black"
             android:textSize="80sp" />
 
@@ -103,7 +102,6 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:background="@color/pink"
-            android:tag="1"
             android:textColor="@color/black"
             android:textSize="80sp" />
 
@@ -117,7 +115,6 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:background="@color/purple"
-            android:tag="2"
             android:textColor="@color/black"
             android:textSize="80sp" />
 
@@ -131,7 +128,6 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:background="@color/lime"
-            android:tag="3"
             android:textColor="@color/black"
             android:textSize="80sp" />
     </GridLayout>
