@@ -113,8 +113,10 @@ public class AdditionFragment extends Fragment {
         if (TAG == locationOfCorrectAnswer){
             score++;
             correct.setText(getString(R.string.correct));
+            correct.setTextColor(getResources().getColor(R.color.lime));
         } else {
             correct.setText(getString(R.string.wrong));
+            correct.setTextColor(getResources().getColor(R.color.red));
         }
         play();
 //        if (numberOfQuestions == 10){

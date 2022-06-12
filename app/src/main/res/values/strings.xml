@@ -2,7 +2,7 @@
     <string name="app_name">TungPat</string>
     <string name="mulai">Mulai!</string>
     <string name="_0_0">0/0</string>
-    <string name="_30s">10s</string>
+    <string name="_10s">10s</string>
     <string name="correct">Benar!</string>
     <string name="wrong">Salah!</string>
     <string name="plus">%1$d + %2$d</string>
