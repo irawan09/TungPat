@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
 
@@ -27,6 +29,7 @@ public class AdditionFragment extends Fragment {
     int score=0;
     int numberOfQuestions=0;
     TextView question, correct, timer, points;
+    CountDownTimer counter;
 
     public AdditionFragment() {
         // Required empty public constructor
@@ -58,11 +61,14 @@ public class AdditionFragment extends Fragment {
     }
 
     private void play(){
+        binding.button0.setVisibility(View.VISIBLE);
+        binding.button1.setVisibility(View.VISIBLE);
+        binding.button2.setVisibility(View.VISIBLE);
+        binding.button3.setVisibility(View.VISIBLE);
+
         random = new Random();
         int a = random.nextInt(101);
-        Log.i("TAG", String.valueOf(a));
         int b = random.nextInt(101);
-        Log.i("TAG", String.valueOf(b));
         int incorrectAnswer;
         locationOfCorrectAnswer = random.nextInt(4);
         question.setText(getString(R.string.plus, a, b));
@@ -81,31 +87,32 @@ public class AdditionFragment extends Fragment {
         }
 
         binding.button0.setText(String.valueOf(answer.get(0)));
-        Log.i("Button0", String.valueOf(answer.get(0)));
         binding.button1.setText(String.valueOf(answer.get(1)));
-        Log.i("Button1", String.valueOf(answer.get(1)));
         binding.button2.setText(String.valueOf(answer.get(2)));
-        Log.i("Button2", String.valueOf(answer.get(2)));
         binding.button3.setText(String.valueOf(answer.get(3)));
-        Log.i("Button3", String.valueOf(answer.get(3)));
         binding.pointsTextView2.setText(getString(R.string.results, score, numberOfQuestions));
         numberOfQuestions++;
 
-
-        new CountDownTimer(15100, 1000) {
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        counter = new CountDownTimer( 15100, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
+                Log.i("Timer", String.valueOf(millisUntilFinished));
                 timer.setText(getString(R.string.timer, millisUntilFinished/1000));
                 question.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFinish() {
-
+                counter.cancel();
                 binding.retry.setVisibility(View.VISIBLE);
                 timer.setText(getString(R.string._0s));
                 question.setVisibility(View.INVISIBLE);
+                binding.button0.setVisibility(View.INVISIBLE);
+                binding.button1.setVisibility(View.INVISIBLE);
+                binding.button2.setVisibility(View.INVISIBLE);
+                binding.button3.setVisibility(View.INVISIBLE);
                 points.setText(getString(R.string.final_score, score, numberOfQuestions));
 
                 binding.retry.setOnClickListener(view -> {
