@@ -1,11 +1,6 @@
 package irawan.electroshock.tungpat;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import irawan.electroshock.tungpat.databinding.ActivityMainBinding;
+import java.util.ArrayList;
+import java.util.Random;
+
 import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
 
 public class AdditionFragment extends Fragment {
@@ -95,38 +90,7 @@ public class AdditionFragment extends Fragment {
         binding.pointsTextView2.setText(getString(R.string.results, score, numberOfQuestions));
         numberOfQuestions++;
 
-        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        counter = new CountDownTimer( 15100, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.i("Timer", String.valueOf(millisUntilFinished));
-                Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
-                    timer.setText(getString(R.string.timer, millisUntilFinished/1000));
-                    question.setVisibility(View.VISIBLE);
-                }));
-                ui.start();
-
-            }
-
-            @Override
-            public void onFinish() {
-                counter.cancel();
-                binding.retry.setVisibility(View.VISIBLE);
-                timer.setText(getString(R.string._0s));
-                question.setVisibility(View.INVISIBLE);
-                binding.button0.setVisibility(View.INVISIBLE);
-                binding.button1.setVisibility(View.INVISIBLE);
-                binding.button2.setVisibility(View.INVISIBLE);
-                binding.button3.setVisibility(View.INVISIBLE);
-                correct.setVisibility(View.INVISIBLE);
-                points.setText(getString(R.string.final_score, score, numberOfQuestions));
-
-                binding.retry.setOnClickListener(view -> {
-                    play();
-                });
-            }
-        }.start();
+        countDownTimer();
 
         binding.button0.setOnClickListener(view1 -> {
             Tag = 0;
@@ -158,5 +122,45 @@ public class AdditionFragment extends Fragment {
             correct.setTextColor(getResources().getColor(R.color.red));
         }
         play();
+    }
+
+    private void countDownTimer(){
+        counter = new CountDownTimer( 15000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.i("Timer", String.valueOf(millisUntilFinished));
+                Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
+                    timer.setText(getString(R.string.timer, millisUntilFinished/1000));
+                    question.setVisibility(View.VISIBLE);
+                }));
+                ui.start();
+
+            }
+
+            @Override
+            public void onFinish() {
+                counter.cancel();
+                Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
+                    binding.retry.setVisibility(View.VISIBLE);
+                    timer.setText(getString(R.string._0s));
+                    question.setVisibility(View.INVISIBLE);
+                    binding.button0.setVisibility(View.INVISIBLE);
+                    binding.button1.setVisibility(View.INVISIBLE);
+                    binding.button2.setVisibility(View.INVISIBLE);
+                    binding.button3.setVisibility(View.INVISIBLE);
+                    correct.setVisibility(View.INVISIBLE);
+                    points.setText(getString(R.string.final_score, score, numberOfQuestions));
+
+                    binding.retry.setOnClickListener(view -> {
+                        play();
+                    });
+
+                }));
+                ui.start();
+
+            }
+        };
+        counter.start();
     }
 }
