@@ -26,7 +26,8 @@ public class AdditionFragment extends Fragment {
     int score=0;
     int numberOfQuestions=0;
     TextView question, correct, timer, points;
-    CountDownTimer counter;
+    int secondsLeft = 0;
+    CountDownTimer countDown;
 
     public AdditionFragment() {
         // Required empty public constructor
@@ -58,6 +59,10 @@ public class AdditionFragment extends Fragment {
     }
 
     private void play(){
+        generateQuestion();
+    }
+
+    private void generateQuestion(){
         binding.button0.setVisibility(View.VISIBLE);
         binding.button1.setVisibility(View.VISIBLE);
         binding.button2.setVisibility(View.VISIBLE);
@@ -108,6 +113,7 @@ public class AdditionFragment extends Fragment {
         binding.button3.setOnClickListener(view12 -> {
             Tag = 3;
             chooseAnswer(Tag);
+
         });
     }
 
@@ -121,15 +127,20 @@ public class AdditionFragment extends Fragment {
             correct.setText(getString(R.string.wrong));
             correct.setTextColor(getResources().getColor(R.color.red));
         }
+        countDown.cancel();
         play();
     }
 
     private void countDownTimer(){
-        counter = new CountDownTimer( 15000, 1000) {
+        countDown = new CountDownTimer( 10000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                Log.i("Timer", String.valueOf(millisUntilFinished));
+                if (Math.round((float)millisUntilFinished / 1000.0f) != secondsLeft)
+                {
+                    secondsLeft = Math.round((float)millisUntilFinished / 1000.0f);
+                }
+                Log.i("Timer", String.valueOf(secondsLeft));
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
                     timer.setText(getString(R.string.timer, millisUntilFinished/1000));
                     question.setVisibility(View.VISIBLE);
@@ -140,7 +151,7 @@ public class AdditionFragment extends Fragment {
 
             @Override
             public void onFinish() {
-                counter.cancel();
+                countDown.cancel();
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
                     binding.retry.setVisibility(View.VISIBLE);
                     timer.setText(getString(R.string._0s));
@@ -161,6 +172,6 @@ public class AdditionFragment extends Fragment {
 
             }
         };
-        counter.start();
+        countDown.start();
     }
 }
