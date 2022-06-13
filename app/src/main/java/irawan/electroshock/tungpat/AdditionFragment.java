@@ -14,10 +14,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+import irawan.electroshock.tungpat.databinding.ActivityMainBinding;
 import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
 
 public class AdditionFragment extends Fragment {
@@ -99,8 +101,12 @@ public class AdditionFragment extends Fragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.i("Timer", String.valueOf(millisUntilFinished));
-                timer.setText(getString(R.string.timer, millisUntilFinished/1000));
-                question.setVisibility(View.VISIBLE);
+                Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
+                    timer.setText(getString(R.string.timer, millisUntilFinished/1000));
+                    question.setVisibility(View.VISIBLE);
+                }));
+                ui.start();
+
             }
 
             @Override
@@ -113,6 +119,7 @@ public class AdditionFragment extends Fragment {
                 binding.button1.setVisibility(View.INVISIBLE);
                 binding.button2.setVisibility(View.INVISIBLE);
                 binding.button3.setVisibility(View.INVISIBLE);
+                correct.setVisibility(View.INVISIBLE);
                 points.setText(getString(R.string.final_score, score, numberOfQuestions));
 
                 binding.retry.setOnClickListener(view -> {
