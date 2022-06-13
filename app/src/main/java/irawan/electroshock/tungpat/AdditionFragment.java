@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -56,6 +57,7 @@ public class AdditionFragment extends Fragment {
         points = binding.pointsTextView2;
         correct.setVisibility(View.INVISIBLE);
         binding.retry.setVisibility(View.INVISIBLE);
+        binding.mainMenu.setVisibility(View.INVISIBLE);
     }
 
     private void play(){
@@ -154,6 +156,7 @@ public class AdditionFragment extends Fragment {
                 countDown.cancel();
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
                     binding.retry.setVisibility(View.VISIBLE);
+                    binding.mainMenu.setVisibility(View.VISIBLE);
                     timer.setText(getString(R.string._0s));
                     question.setVisibility(View.INVISIBLE);
                     binding.button0.setVisibility(View.INVISIBLE);
@@ -169,6 +172,14 @@ public class AdditionFragment extends Fragment {
                         play();
                     });
 
+                    binding.mainMenu.setOnClickListener(view -> {
+                        FragmentTransaction transaction = requireActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction();
+
+                        transaction.replace(R.id.frameLayout, new HomeFragment());
+                        transaction.commit();
+                    });
                 }));
                 ui.start();
 

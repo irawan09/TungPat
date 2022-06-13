@@ -11,4 +11,9 @@
     <string name="final_score">Your score: %1$d/%2$d</string>
     <string name="timer">%1$d s"</string>
     <string name="main_lagi">Main Lagi</string>
+    <string name="addition">Pertambahan</string>
+    <string name="substraction">Pengurangan</string>
+    <string name="multiplication">Perkalian</string>
+    <string name="division">Pembagian</string>
+    <string name="main_menu">Menu Utama</string>
 </resources>

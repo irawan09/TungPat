@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import irawan.electroshock.tungpat.databinding.FragmentHomeBinding;
 
@@ -33,7 +34,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.startButton.setOnClickListener(view1 -> {
+        binding.additionButton.setOnClickListener(view1 -> {
 
             FragmentTransaction transaction = this.requireActivity()
                     .getSupportFragmentManager()
@@ -42,6 +43,18 @@ public class HomeFragment extends Fragment {
             transaction.replace(R.id.frameLayout, new AdditionFragment());
             transaction.commit();
 
+        });
+
+        binding.substractionButton.setOnClickListener(view12 -> {
+            Toast.makeText(requireActivity().getBaseContext(), "Fitur ini sedang di kembangkan", Toast.LENGTH_LONG).show();
+        });
+
+        binding.multiplicationButton.setOnClickListener(view13 -> {
+            Toast.makeText(requireActivity().getBaseContext(), "Fitur ini sedang di kembangkan", Toast.LENGTH_LONG).show();
+        });
+
+        binding.divisionButton.setOnClickListener(view14 -> {
+            Toast.makeText(requireActivity().getBaseContext(), "Fitur ini sedang di kembangkan", Toast.LENGTH_LONG).show();
         });
     }
 }
