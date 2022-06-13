@@ -163,7 +163,11 @@ public class AdditionFragment extends Fragment {
                     correct.setVisibility(View.INVISIBLE);
                     points.setText(getString(R.string.final_score, score, numberOfQuestions));
 
-                    binding.retry.setOnClickListener(view -> play());
+                    binding.retry.setOnClickListener(view -> {
+                        score=0;
+                        numberOfQuestions=0;
+                        play();
+                    });
 
                 }));
                 ui.start();
