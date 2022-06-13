@@ -134,7 +134,7 @@ public class AdditionFragment extends Fragment {
     }
 
     private void countDownTimer(){
-        countDown = new CountDownTimer( 10000, 1000) {
+        countDown = new CountDownTimer( 8000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
