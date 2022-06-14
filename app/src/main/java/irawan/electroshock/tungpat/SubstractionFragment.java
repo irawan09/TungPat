@@ -17,29 +17,29 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.ArrayList;
 import java.util.Random;
 
-import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
+import irawan.electroshock.tungpat.databinding.FragmentSubstractionBinding;
 
-public class AdditionFragment extends Fragment {
+public class SubstractionFragment extends Fragment {
 
-    FragmentAdditionBinding binding;
+    FragmentSubstractionBinding binding;
     private final ArrayList<Integer> answer = new ArrayList<>();
     private int locationOfCorrectAnswer, Tag;
     private int score=0;
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
     Button button0, button1, button2, button3, retry, mainMenu;
-    private int secondsLeft = 0;
+    private int secondsLeft =0;
     private CountDownTimer countDown;
 
-    public AdditionFragment() {
+    public SubstractionFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAdditionBinding.inflate(inflater, container, false);
+        binding = FragmentSubstractionBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -51,75 +51,63 @@ public class AdditionFragment extends Fragment {
         play();
     }
 
-    private void initWidgets(FragmentAdditionBinding binding){
-        question = binding.sumTextView;
-        correct = binding.correctTextView;
-        timer = binding.timerTextView;
-        points = binding.pointsTextView2;
-        button0 = binding.button0;
-        button1 = binding.button1;
-        button2 = binding.button2;
-        button3 = binding.button3;
-        retry = binding.retry;
-        mainMenu = binding.mainMenu;
-        correct.setVisibility(View.INVISIBLE);
-        retry.setVisibility(View.INVISIBLE);
-        mainMenu.setVisibility(View.INVISIBLE);
-    }
-
-    private void play(){
+    private void play() {
         generateQuestion();
     }
 
-    private void generateQuestion(){
-        button0.setVisibility(View.VISIBLE);
-        button1.setVisibility(View.VISIBLE);
-        button2.setVisibility(View.VISIBLE);
-        button3.setVisibility(View.VISIBLE);
+    private void generateQuestion() {
+        binding.buttonSubs0.setVisibility(View.VISIBLE);
+        binding.buttonSubs1.setVisibility(View.VISIBLE);
+        binding.buttonSubs2.setVisibility(View.VISIBLE);
+        binding.buttonSubs3.setVisibility(View.VISIBLE);
 
         Random random = new Random();
         int a = random.nextInt(101);
         int b = random.nextInt(101);
+        while(a <= b){
+            b = random.nextInt(101);
+        }
+
         int incorrectAnswer;
         locationOfCorrectAnswer = random.nextInt(4);
-        question.setText(getString(R.string.plus, a, b));
+        question.setText(getString(R.string.substract, a, b));
 
         answer.clear();
         for(int i=0;i<4;i++){
             if(i == locationOfCorrectAnswer){
-                answer.add(a + b);
+                answer.add(a - b);
             } else{
                 incorrectAnswer = random.nextInt(201);
-                while(incorrectAnswer == a + b){
+                while(incorrectAnswer == a - b){
                     incorrectAnswer = random.nextInt(201);
                 }
                 answer.add(incorrectAnswer);
             }
         }
 
-        button0.setText(String.valueOf(answer.get(0)));
-        button1.setText(String.valueOf(answer.get(1)));
-        button2.setText(String.valueOf(answer.get(2)));
-        button3.setText(String.valueOf(answer.get(3)));
-        binding.pointsTextView2.setText(getString(R.string.results, score, numberOfQuestions));
+        binding.buttonSubs0.setText(String.valueOf(answer.get(0)));
+        binding.buttonSubs1.setText(String.valueOf(answer.get(1)));
+        binding.buttonSubs2.setText(String.valueOf(answer.get(2)));
+        binding.buttonSubs3.setText(String.valueOf(answer.get(3)));
+        binding.pointsSubsTextView2.setText(getString(R.string.substract, score, numberOfQuestions));
         numberOfQuestions++;
 
         countDownTimer();
 
-        button0.setOnClickListener(view1 -> {
+        binding.buttonSubs0.setOnClickListener(view1 -> {
             Tag = 0;
             chooseAnswer(Tag);
         });
 
-        button1.setOnClickListener(view2 -> {
+        binding.buttonSubs1.setOnClickListener(view2 -> {
             Tag = 1;
             chooseAnswer(Tag);
         });
-        button2.setOnClickListener(view3 -> {
+        binding.buttonSubs2.setOnClickListener(view3 -> {
             Tag = 2;
             chooseAnswer(Tag);
         });
-        button3.setOnClickListener(view12 -> {
+        binding.buttonSubs3.setOnClickListener(view12 -> {
             Tag = 3;
             chooseAnswer(Tag);
 
@@ -140,7 +128,7 @@ public class AdditionFragment extends Fragment {
         play();
     }
 
-    private void countDownTimer(){
+    private void countDownTimer() {
         countDown = new CountDownTimer( 8000, 1000) {
 
             @Override
@@ -162,8 +150,8 @@ public class AdditionFragment extends Fragment {
             public void onFinish() {
                 countDown.cancel();
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
-                    binding.retry.setVisibility(View.VISIBLE);
-                    binding.mainMenu.setVisibility(View.VISIBLE);
+                    retry.setVisibility(View.VISIBLE);
+                    mainMenu.setVisibility(View.VISIBLE);
                     timer.setText(getString(R.string._0s));
                     question.setVisibility(View.INVISIBLE);
                     button0.setVisibility(View.INVISIBLE);
@@ -193,5 +181,21 @@ public class AdditionFragment extends Fragment {
             }
         };
         countDown.start();
+    }
+
+    private void initWidgets(FragmentSubstractionBinding binding) {
+        question = binding.subsTextView;
+        correct = binding.correctSubsTextView;
+        timer = binding.timerSubsTextView;
+        points = binding.pointsSubsTextView2;
+        button0 = binding.buttonSubs0;
+        button1 = binding.buttonSubs1;
+        button2 = binding.buttonSubs2;
+        button3 = binding.buttonSubs3;
+        retry = binding.subsRetry;
+        mainMenu = binding.subsMainMenu;
+        correct.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.INVISIBLE);
+        mainMenu.setVisibility(View.INVISIBLE);
     }
 }

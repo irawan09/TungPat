@@ -46,7 +46,12 @@ public class HomeFragment extends Fragment {
         });
 
         binding.substractionButton.setOnClickListener(view12 -> {
-            Toast.makeText(requireActivity().getBaseContext(), "Fitur ini sedang di kembangkan", Toast.LENGTH_LONG).show();
+            FragmentTransaction transaction = this.requireActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction();
+
+            transaction.replace(R.id.frameLayout, new SubstractionFragment());
+            transaction.commit();
         });
 
         binding.multiplicationButton.setOnClickListener(view13 -> {
