@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragment.MultiplicationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,49 +12,49 @@
         android:padding="8dp"
         tools:context=".fragment.AdditionFragment">
 
-            <TextView
-                android:id="@+id/timerTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/yellow"
-                android:padding="8dp"
-                android:text="@string/_10s"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/multiply_timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:padding="8dp"
+            android:text="@string/_10s"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/pointsTextView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/orange"
-                android:padding="10dp"
-                android:text="@string/_0_0"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.953"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/multiply_pointsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"
+            android:padding="10dp"
+            android:text="@string/_0_0"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.953"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/sumTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:textColor="@color/black"
-                android:padding="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.023" />
+        <TextView
+            android:id="@+id/multiply_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.023" />
 
         <GridLayout
             android:id="@+id/gridLayout"
@@ -68,7 +69,7 @@
             app:layout_constraintVertical_bias="0.201">
 
             <Button
-                android:id="@+id/button0"
+                android:id="@+id/multiply_button0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
@@ -81,7 +82,7 @@
                 android:textSize="40sp" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/multiply_button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
@@ -94,7 +95,7 @@
                 android:textSize="40sp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/multiply_button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
@@ -107,7 +108,7 @@
                 android:textSize="40sp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/multiply_button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
@@ -121,7 +122,7 @@
         </GridLayout>
 
         <TextView
-            android:id="@+id/correctTextView"
+            android:id="@+id/multiply_correctTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/correct"
@@ -133,7 +134,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/retry"
+            android:id="@+id/multiply_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_lagi"
@@ -145,7 +146,7 @@
             app:layout_constraintVertical_bias="0.717" />
 
         <Button
-            android:id="@+id/main_menu"
+            android:id="@+id/multiply_main_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/main_menu"
@@ -157,4 +158,5 @@
             app:layout_constraintVertical_bias="0.802" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

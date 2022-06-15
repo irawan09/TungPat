@@ -1,4 +1,4 @@
-package irawan.electroshock.tungpat;
+package irawan.electroshock.tungpat.fragment;
 
 import android.os.Bundle;
 
@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import irawan.electroshock.tungpat.R;
 import irawan.electroshock.tungpat.databinding.FragmentHomeBinding;
+import irawan.electroshock.tungpat.fragment.AdditionFragment;
+import irawan.electroshock.tungpat.fragment.SubstractionFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -55,7 +58,12 @@ public class HomeFragment extends Fragment {
         });
 
         binding.multiplicationButton.setOnClickListener(view13 -> {
-            Toast.makeText(requireActivity().getBaseContext(), "Fitur ini sedang di kembangkan", Toast.LENGTH_LONG).show();
+            FragmentTransaction transaction = this.requireActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction();
+
+            transaction.replace(R.id.frameLayout, new MultiplicationFragment());
+            transaction.commit();
         });
 
         binding.divisionButton.setOnClickListener(view14 -> {

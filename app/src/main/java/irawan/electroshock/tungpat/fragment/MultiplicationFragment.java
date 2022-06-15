@@ -1,6 +1,12 @@
-package irawan.electroshock.tungpat;
+package irawan.electroshock.tungpat.fragment;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,69 +15,47 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
+import irawan.electroshock.tungpat.R;
+import irawan.electroshock.tungpat.databinding.FragmentMultiplicationBinding;
 
-public class AdditionFragment extends Fragment {
+public class MultiplicationFragment extends Fragment {
 
-    FragmentAdditionBinding binding;
+    FragmentMultiplicationBinding binding;
     private final ArrayList<Integer> answer = new ArrayList<>();
     private int locationOfCorrectAnswer, Tag;
     private int score=0;
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
     Button button0, button1, button2, button3, retry, mainMenu;
-    private int secondsLeft = 0;
+    private int secondsLeft=0;
     private CountDownTimer countDown;
-
-    public AdditionFragment() {
+    
+    public MultiplicationFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAdditionBinding.inflate(inflater, container, false);
+        binding = FragmentMultiplicationBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initWidgets(binding);
         play();
     }
 
-    private void initWidgets(FragmentAdditionBinding binding){
-        question = binding.sumTextView;
-        correct = binding.correctTextView;
-        timer = binding.timerTextView;
-        points = binding.pointsTextView2;
-        button0 = binding.button0;
-        button1 = binding.button1;
-        button2 = binding.button2;
-        button3 = binding.button3;
-        retry = binding.retry;
-        mainMenu = binding.mainMenu;
-        correct.setVisibility(View.INVISIBLE);
-        retry.setVisibility(View.INVISIBLE);
-        mainMenu.setVisibility(View.INVISIBLE);
-    }
-
-    private void play(){
+    private void play() {
         generateQuestion();
     }
 
-    private void generateQuestion(){
+    private void generateQuestion() {
         button0.setVisibility(View.VISIBLE);
         button1.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -82,16 +66,16 @@ public class AdditionFragment extends Fragment {
         int b = random.nextInt(101);
         int incorrectAnswer;
         locationOfCorrectAnswer = random.nextInt(4);
-        question.setText(getString(R.string.plus, a, b));
+        question.setText(getString(R.string.multiply, a, b));
 
         answer.clear();
         for(int i=0;i<4;i++){
             if(i == locationOfCorrectAnswer){
-                answer.add(a + b);
+                answer.add(a * b);
             } else{
-                incorrectAnswer = random.nextInt(201);
-                while(incorrectAnswer == a + b){
-                    incorrectAnswer = random.nextInt(201);
+                incorrectAnswer = random.nextInt(2001);
+                while(incorrectAnswer == a * b){
+                    incorrectAnswer = random.nextInt(2001);
                 }
                 answer.add(incorrectAnswer);
             }
@@ -101,7 +85,7 @@ public class AdditionFragment extends Fragment {
         button1.setText(String.valueOf(answer.get(1)));
         button2.setText(String.valueOf(answer.get(2)));
         button3.setText(String.valueOf(answer.get(3)));
-        binding.pointsTextView2.setText(getString(R.string.results, score, numberOfQuestions));
+        points.setText(getString(R.string.results, score, numberOfQuestions));
         numberOfQuestions++;
 
         countDownTimer();
@@ -126,9 +110,9 @@ public class AdditionFragment extends Fragment {
         });
     }
 
-    private void chooseAnswer(int TAG){
+    private void chooseAnswer(int tag) {
         correct.setVisibility(View.VISIBLE);
-        if (TAG == locationOfCorrectAnswer){
+        if (tag == locationOfCorrectAnswer){
             score++;
             correct.setText(getString(R.string.correct));
             correct.setTextColor(getResources().getColor(R.color.lime));
@@ -140,7 +124,7 @@ public class AdditionFragment extends Fragment {
         play();
     }
 
-    private void countDownTimer(){
+    private void countDownTimer() {
         countDown = new CountDownTimer( 8000, 1000) {
 
             @Override
@@ -162,8 +146,8 @@ public class AdditionFragment extends Fragment {
             public void onFinish() {
                 countDown.cancel();
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
-                    binding.retry.setVisibility(View.VISIBLE);
-                    binding.mainMenu.setVisibility(View.VISIBLE);
+                    retry.setVisibility(View.VISIBLE);
+                    mainMenu.setVisibility(View.VISIBLE);
                     timer.setText(getString(R.string._0s));
                     question.setVisibility(View.INVISIBLE);
                     button0.setVisibility(View.INVISIBLE);
@@ -193,5 +177,21 @@ public class AdditionFragment extends Fragment {
             }
         };
         countDown.start();
+    }
+
+    private void initWidgets(FragmentMultiplicationBinding binding) {
+        question = binding.multiplyTextView;
+        correct = binding.multiplyCorrectTextView;
+        timer = binding.multiplyTimerTextView;
+        points = binding.multiplyPointsTextView;
+        button0 = binding.multiplyButton0;
+        button1 = binding.multiplyButton1;
+        button2 = binding.multiplyButton2;
+        button3 = binding.multiplyButton3;
+        retry = binding.multiplyRetry;
+        mainMenu = binding.multiplyMainMenu;
+        correct.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.INVISIBLE);
+        mainMenu.setVisibility(View.INVISIBLE);
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import irawan.electroshock.tungpat.databinding.ActivityMainBinding;
+import irawan.electroshock.tungpat.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
