@@ -67,7 +67,12 @@ public class HomeFragment extends Fragment {
         });
 
         binding.divisionButton.setOnClickListener(view14 -> {
-            Toast.makeText(requireActivity().getBaseContext(), "Fitur ini sedang di kembangkan", Toast.LENGTH_LONG).show();
+            FragmentTransaction transaction = this.requireActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction();
+
+            transaction.replace(R.id.frameLayout, new DivisionFragment());
+            transaction.commit();
         });
     }
 }
