@@ -1,21 +1,17 @@
 package irawan.electroshock.tungpat.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import irawan.electroshock.tungpat.R;
 import irawan.electroshock.tungpat.databinding.FragmentHomeBinding;
-import irawan.electroshock.tungpat.fragment.AdditionFragment;
-import irawan.electroshock.tungpat.fragment.SubstractionFragment;
 
 public class HomeFragment extends Fragment {
 
