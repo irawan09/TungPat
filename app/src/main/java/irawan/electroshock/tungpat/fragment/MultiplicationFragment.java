@@ -1,5 +1,7 @@
 package irawan.electroshock.tungpat.fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,7 +32,8 @@ public class MultiplicationFragment extends Fragment {
     private int score=0;
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
-    Button button0, button1, button2, button3, retry, mainMenu;
+    Button button0, button1, button2, button3;
+    ImageButton retry, mainMenu;
     private int secondsLeft=0;
     private CountDownTimer countDown;
     
@@ -52,6 +56,8 @@ public class MultiplicationFragment extends Fragment {
     }
 
     private void play() {
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
         generateQuestion();
     }
 
@@ -191,7 +197,7 @@ public class MultiplicationFragment extends Fragment {
         retry = binding.multiplyRetry;
         mainMenu = binding.multiplyMainMenu;
         correct.setVisibility(View.INVISIBLE);
-        retry.setVisibility(View.INVISIBLE);
-        mainMenu.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
     }
 }

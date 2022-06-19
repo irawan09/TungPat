@@ -15,5 +15,6 @@
     <color name="purple">#9C27B0</color>
     <color name="lime">#8BC34A</color>
     <color name="red">#FF0000</color>
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>

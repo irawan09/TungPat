@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,8 @@ public class SubstractionFragment extends Fragment {
     private int score=0;
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
-    Button button0, button1, button2, button3, retry, mainMenu;
+    Button button0, button1, button2, button3;
+    ImageButton retry, mainMenu;
     private int secondsLeft =0;
     private CountDownTimer countDown;
 
@@ -53,6 +55,8 @@ public class SubstractionFragment extends Fragment {
     }
 
     private void play() {
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
         generateQuestion();
     }
 
@@ -196,7 +200,7 @@ public class SubstractionFragment extends Fragment {
         retry = binding.subsRetry;
         mainMenu = binding.subsMainMenu;
         correct.setVisibility(View.INVISIBLE);
-        retry.setVisibility(View.INVISIBLE);
-        mainMenu.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
     }
 }

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ public class DivisionFragment extends Fragment {
     private int score=0;
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
-    Button button0, button1, button2, button3, retry, mainMenu;
+    Button button0, button1, button2, button3;
+    ImageButton retry, mainMenu;
     private int secondsLeft;
     private CountDownTimer countDown;
 
@@ -52,6 +54,8 @@ public class DivisionFragment extends Fragment {
     }
 
     private void play() {
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
         generateQuestion();
     }
 
@@ -199,7 +203,7 @@ public class DivisionFragment extends Fragment {
         retry = binding.divideRetry;
         mainMenu = binding.divideMainMenu;
         correct.setVisibility(View.INVISIBLE);
-        retry.setVisibility(View.INVISIBLE);
-        mainMenu.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
     }
 }

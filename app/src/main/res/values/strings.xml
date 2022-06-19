@@ -14,11 +14,12 @@
     <string name="final_score">Your score: %1$d/%2$d</string>
     <string name="timer">%1$d s"</string>
     <string name="main_lagi">Main Lagi</string>
-    <string name="addition">Pertambahan</string>
-    <string name="substraction">Pengurangan</string>
-    <string name="multiplication">Perkalian</string>
-    <string name="division">Pembagian</string>
+    <string name="addition">+</string>
+    <string name="substraction">-</string>
+    <string name="multiplication">*</string>
+    <string name="division">/</string>
     <string name="main_menu">Menu Utama</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="retry">retry</string>
 </resources>

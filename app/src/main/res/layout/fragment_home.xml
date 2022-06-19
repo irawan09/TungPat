@@ -28,51 +28,74 @@
                 app:lottie_loop="false"
                 app:lottie_speed="1"/>
 
-            <Button
-                android:id="@+id/additionButton"
+            <GridLayout
+                android:id="@+id/gridLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/green"
-                android:paddingBottom="20dp"
-                android:text="@string/addition"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.201">
 
-            <Button
-                android:id="@+id/substractionButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/pink"
-                android:paddingBottom="20dp"
-                android:text="@string/substraction"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                <Button
+                    android:id="@+id/additionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:backgroundTint="@color/green"
+                    android:text="@string/addition"
+                    android:textColor="@color/black"
+                    android:textSize="50sp" />
 
-            <Button
-                android:id="@+id/multiplicationButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue"
-                android:paddingBottom="20dp"
-                android:text="@string/multiplication"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                <Button
+                    android:id="@+id/substractionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:backgroundTint="@color/pink"
+                    android:text="@string/substraction"
+                    android:textColor="@color/black"
+                    android:textSize="50sp"/>
 
-            <Button
-                android:id="@+id/divisionButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/purple"
-                android:paddingBottom="20dp"
-                android:text="@string/division"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/multiplicationButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:backgroundTint="@color/blue"
+                    android:text="@string/multiplication"
+                    android:textColor="@color/black"
+                    android:textSize="50sp" />
+
+                <Button
+                    android:id="@+id/divisionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:backgroundTint="@color/purple"
+                    android:text="@string/division"
+                    android:textColor="@color/black"
+                    android:textSize="50sp" />
+            </GridLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

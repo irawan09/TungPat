@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/drawable/ic_baseline_home.xml" value="0.124" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.125" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/drawable/ic_baseline_home_white.xml" value="0.124" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/drawable/ic_baseline_replay.xml" value="0.124" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/drawable/ic_baseline_replay_24.xml" value="0.124" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/drawable/ic_baseline_replay_white.xml" value="0.124" />
         <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_addition.xml" value="0.176" />
-        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_division.xml" value="0.1" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_addition.xml" value="0.1" />
+        <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_division.xml" value="0.2" />
         <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_multiplication.xml" value="0.1" />
         <entry key="..\:/Users/arir/AndroidStudioProjects/TungPat/app/src/main/res/layout/fragment_substraction.xml" value="0.1" />
