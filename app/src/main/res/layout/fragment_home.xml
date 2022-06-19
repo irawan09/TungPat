@@ -19,9 +19,9 @@
             android:gravity="center">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:id="@+id/animationLogo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 app:lottie_fileName="logo.json"
                 app:lottie_autoPlay="true"
@@ -96,6 +96,16 @@
                     android:textColor="@color/black"
                     android:textSize="50sp" />
             </GridLayout>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationIllustration"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                app:lottie_fileName="speed_math.json"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_speed="1"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
