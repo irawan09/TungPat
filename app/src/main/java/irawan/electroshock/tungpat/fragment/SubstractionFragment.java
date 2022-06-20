@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import irawan.electroshock.tungpat.R;
+import irawan.electroshock.tungpat.databinding.AlertDialogTextEntryBinding;
 import irawan.electroshock.tungpat.databinding.FragmentSubstractionBinding;
 
 public class SubstractionFragment extends Fragment {
@@ -184,7 +186,7 @@ public class SubstractionFragment extends Fragment {
                     });
 
                     save.setOnClickListener(view ->{
-
+                        saveAlertDialog();
                     });
                 }));
                 ui.start();
@@ -192,6 +194,30 @@ public class SubstractionFragment extends Fragment {
             }
         };
         countDown.start();
+    }
+
+    private void saveAlertDialog(){
+        // This example shows how to add a custom layout to an AlertDialog
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this.requireContext());
+        LayoutInflater factory = LayoutInflater.from(this.requireContext());
+        AlertDialogTextEntryBinding dialogBinding = AlertDialogTextEntryBinding.inflate(factory);
+        alert.setView(dialogBinding.getRoot());
+
+        alert.setIcon(R.drawable.ic_baseline_save);
+        alert.setTitle(R.string.alert_dialog_text_entry);
+        alert.setPositiveButton(R.string.alecrt_dialog_ok, (dialog, whichButton) -> {
+            /* User clicked OK so do some stuff */
+            String name =  dialogBinding.username.getText().toString().trim()+"";
+            Log.i("Alert Dialog", name);
+            dialog.dismiss();
+
+        });
+        alert.setNegativeButton(R.string.alert_dialog_cancel, (dialog, whichButton) -> {
+            /* User clicked cancel so do some stuff */
+            dialog.cancel();
+        });
+        alert.create();
+        alert.show();
     }
 
     private void initWidgets(FragmentSubstractionBinding binding) {
