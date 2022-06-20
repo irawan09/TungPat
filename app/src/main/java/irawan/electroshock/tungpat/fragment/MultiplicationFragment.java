@@ -1,14 +1,6 @@
 package irawan.electroshock.tungpat.fragment;
 
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,7 +30,7 @@ public class MultiplicationFragment extends Fragment {
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
     Button button0, button1, button2, button3;
-    ImageButton retry, mainMenu;
+    ImageButton retry, mainMenu, save;
     private int secondsLeft=0;
     private CountDownTimer countDown;
     
@@ -58,6 +55,7 @@ public class MultiplicationFragment extends Fragment {
     private void play() {
         retry.setVisibility(View.GONE);
         mainMenu.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
         generateQuestion();
     }
 
@@ -154,6 +152,7 @@ public class MultiplicationFragment extends Fragment {
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
                     retry.setVisibility(View.VISIBLE);
                     mainMenu.setVisibility(View.VISIBLE);
+                    save.setVisibility(View.VISIBLE);
                     timer.setText(getString(R.string._0s));
                     question.setVisibility(View.INVISIBLE);
                     button0.setVisibility(View.INVISIBLE);
@@ -177,6 +176,10 @@ public class MultiplicationFragment extends Fragment {
                         transaction.replace(R.id.frameLayout, new HomeFragment());
                         transaction.commit();
                     });
+
+                    save.setOnClickListener(view ->{
+
+                    });
                 }));
                 ui.start();
 
@@ -196,8 +199,10 @@ public class MultiplicationFragment extends Fragment {
         button3 = binding.multiplyButton3;
         retry = binding.multiplyRetry;
         mainMenu = binding.multiplyMainMenu;
+        save = binding.multiplySave;
         correct.setVisibility(View.INVISIBLE);
         retry.setVisibility(View.GONE);
         mainMenu.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
     }
 }

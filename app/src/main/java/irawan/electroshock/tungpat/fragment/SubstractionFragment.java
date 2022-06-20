@@ -30,7 +30,7 @@ public class SubstractionFragment extends Fragment {
     private int numberOfQuestions=0;
     TextView question, correct, timer, points;
     Button button0, button1, button2, button3;
-    ImageButton retry, mainMenu;
+    ImageButton retry, mainMenu, save;
     private int secondsLeft =0;
     private CountDownTimer countDown;
 
@@ -57,6 +57,7 @@ public class SubstractionFragment extends Fragment {
     private void play() {
         retry.setVisibility(View.GONE);
         mainMenu.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
         generateQuestion();
     }
 
@@ -157,6 +158,7 @@ public class SubstractionFragment extends Fragment {
                 Thread ui = new Thread(() -> requireActivity().runOnUiThread(() -> {
                     retry.setVisibility(View.VISIBLE);
                     mainMenu.setVisibility(View.VISIBLE);
+                    save.setVisibility(View.VISIBLE);
                     timer.setText(getString(R.string._0s));
                     question.setVisibility(View.INVISIBLE);
                     button0.setVisibility(View.INVISIBLE);
@@ -180,6 +182,10 @@ public class SubstractionFragment extends Fragment {
                         transaction.replace(R.id.frameLayout, new HomeFragment());
                         transaction.commit();
                     });
+
+                    save.setOnClickListener(view ->{
+
+                    });
                 }));
                 ui.start();
 
@@ -199,6 +205,7 @@ public class SubstractionFragment extends Fragment {
         button3 = binding.buttonSubs3;
         retry = binding.subsRetry;
         mainMenu = binding.subsMainMenu;
+        save = binding.subsSave;
         correct.setVisibility(View.INVISIBLE);
         retry.setVisibility(View.GONE);
         mainMenu.setVisibility(View.GONE);
