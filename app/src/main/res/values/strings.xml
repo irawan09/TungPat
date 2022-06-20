@@ -19,7 +19,10 @@
     <string name="multiplication">*</string>
     <string name="division">/</string>
     <string name="main_menu">Menu Utama</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="retry">retry</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+    <string name="alecrt_dialog_ok">Save</string>
+    <string name="alert_dialog_text_entry">do you want to save on database?</string>
+    <string name="enter_your_name">Enter your name</string>
 </resources>
