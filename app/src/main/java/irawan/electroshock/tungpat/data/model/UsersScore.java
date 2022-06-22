@@ -1,15 +1,30 @@
-package irawan.electroshock.tungpat.model;
+package irawan.electroshock.tungpat.data.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "tb_user")
 public class UsersScore {
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name ="user_id")
+    public @NonNull String idUser = "0";
+    @ColumnInfo(name="user_name")
     public String username;
+    @ColumnInfo(name="user_score")
     public String score;
+    @ColumnInfo(name="user_numberOfQuestions")
     public String numberOfQuestions;
 
-    public UsersScore(String username, String score, String numberOfQuestions) {
-        this.username = username;
-        this.score = score;
-        this.numberOfQuestions = numberOfQuestions;
+    @NonNull
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(@NonNull String idUser) {
+        this.idUser = idUser;
     }
 
     public String getUsername() {
