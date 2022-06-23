@@ -10,7 +10,7 @@ public class UsersScore {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name ="user_id")
-    public @NonNull String idUser = "0";
+    public int idUser;
     @ColumnInfo(name="user_name")
     public String username;
     @ColumnInfo(name="user_score")
@@ -18,12 +18,11 @@ public class UsersScore {
     @ColumnInfo(name="user_numberOfQuestions")
     public String numberOfQuestions;
 
-    @NonNull
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(@NonNull String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

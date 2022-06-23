@@ -29,8 +29,8 @@ public interface UserDao {
     @Update
     public void updateAllUsers(UsersScore... scoreEntities);
 
-    @Query("DELETE FROM tb_user WHERE user_id = :scoreEntity")
-    public void deleteUser(UsersScore scoreEntity);
+    @Query("DELETE FROM tb_user WHERE user_id = :id")
+    public void deleteUser(int id);
 
     @Delete
     void deleteAllUsers(UsersScore... scoreEntities);
