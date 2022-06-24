@@ -1,13 +1,6 @@
-package irawan.electroshock.tungpat.fragment;
+package irawan.electroshock.tungpat.view.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,16 +10,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 import irawan.electroshock.tungpat.R;
 import irawan.electroshock.tungpat.databinding.AlertDialogTextEntryBinding;
-import irawan.electroshock.tungpat.databinding.FragmentDivisionBinding;
+import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
 
-public class DivisionFragment extends Fragment {
+public class AdditionFragment extends Fragment {
 
-    FragmentDivisionBinding binding;
+    FragmentAdditionBinding binding;
     private final ArrayList<Integer> answer = new ArrayList<>();
     private int locationOfCorrectAnswer, Tag;
     private int score=0;
@@ -34,35 +33,55 @@ public class DivisionFragment extends Fragment {
     TextView question, correct, timer, points;
     Button button0, button1, button2, button3;
     ImageButton retry, mainMenu, save;
-    private int secondsLeft;
+    private int secondsLeft=0;
     private CountDownTimer countDown;
 
-    public DivisionFragment() {
+    public AdditionFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentDivisionBinding.inflate(inflater, container, false);
+        binding = FragmentAdditionBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initWidgets(binding);
         play();
     }
 
-    private void play() {
+    private void initWidgets(FragmentAdditionBinding binding){
+        question = binding.sumTextView;
+        correct = binding.correctTextView;
+        timer = binding.timerTextView;
+        points = binding.pointsTextView2;
+        button0 = binding.button0;
+        button1 = binding.button1;
+        button2 = binding.button2;
+        button3 = binding.button3;
+        retry = binding.retry;
+        mainMenu = binding.mainMenu;
+        save = binding.save;
+        correct.setVisibility(View.INVISIBLE);
+        retry.setVisibility(View.GONE);
+        mainMenu.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
+    }
+
+    private void play(){
         retry.setVisibility(View.GONE);
         mainMenu.setVisibility(View.GONE);
         save.setVisibility(View.GONE);
         generateQuestion();
     }
 
-    private void generateQuestion() {
+    private void generateQuestion(){
         button0.setVisibility(View.VISIBLE);
         button1.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -71,25 +90,17 @@ public class DivisionFragment extends Fragment {
         Random random = new Random();
         int a = random.nextInt(101);
         int b = random.nextInt(101);
-        while(a <= b){
-            b = random.nextInt(101);
-        }
-        while(a <= 0 || b <= 0){
-            a = random.nextInt(101);
-            b = random.nextInt(101);
-        }
-
         int incorrectAnswer;
         locationOfCorrectAnswer = random.nextInt(4);
-        question.setText(getString(R.string.divide, a, b));
+        question.setText(getString(R.string.plus, a, b));
 
         answer.clear();
         for(int i=0;i<4;i++){
             if(i == locationOfCorrectAnswer){
-                answer.add(a / b);
+                answer.add(a + b);
             } else{
                 incorrectAnswer = random.nextInt(201);
-                while(incorrectAnswer == a / b){
+                while(incorrectAnswer == a + b){
                     incorrectAnswer = random.nextInt(201);
                 }
                 answer.add(incorrectAnswer);
@@ -125,9 +136,9 @@ public class DivisionFragment extends Fragment {
         });
     }
 
-    private void chooseAnswer(int tag) {
+    private void chooseAnswer(int TAG){
         correct.setVisibility(View.VISIBLE);
-        if (tag == locationOfCorrectAnswer){
+        if (TAG == locationOfCorrectAnswer){
             score++;
             correct.setText(getString(R.string.correct));
             correct.setTextColor(getResources().getColor(R.color.lime));
@@ -139,7 +150,7 @@ public class DivisionFragment extends Fragment {
         play();
     }
 
-    private void countDownTimer() {
+    private void countDownTimer(){
         countDown = new CountDownTimer( 8000, 1000) {
 
             @Override
@@ -221,23 +232,5 @@ public class DivisionFragment extends Fragment {
         });
         alert.create();
         alert.show();
-    }
-
-    private void initWidgets(FragmentDivisionBinding binding) {
-        question = binding.divideTextView;
-        correct = binding.correctDivideTextView;
-        timer = binding.timerDivideTextView;
-        points = binding.pointsDivideTextView2;
-        button0 = binding.buttonDivide0;
-        button1 = binding.buttonDivide1;
-        button2 = binding.buttonDivide2;
-        button3 = binding.buttonDivide3;
-        retry = binding.divideRetry;
-        mainMenu = binding.divideMainMenu;
-        save = binding.divideSave;
-        correct.setVisibility(View.INVISIBLE);
-        retry.setVisibility(View.GONE);
-        mainMenu.setVisibility(View.GONE);
-        save.setVisibility(View.GONE);
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context=".MainActivity"
+    tools:context=".view.Activity.MainActivity"
     android:padding="16dp">
 
 </FrameLayout>

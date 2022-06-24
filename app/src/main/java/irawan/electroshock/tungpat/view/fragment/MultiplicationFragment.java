@@ -1,4 +1,4 @@
-package irawan.electroshock.tungpat.fragment;
+package irawan.electroshock.tungpat.view.fragment;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;

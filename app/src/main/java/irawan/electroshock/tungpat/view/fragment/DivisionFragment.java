@@ -1,6 +1,13 @@
-package irawan.electroshock.tungpat.fragment;
+package irawan.electroshock.tungpat.view.fragment;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,22 +17,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 import irawan.electroshock.tungpat.R;
 import irawan.electroshock.tungpat.databinding.AlertDialogTextEntryBinding;
-import irawan.electroshock.tungpat.databinding.FragmentSubstractionBinding;
+import irawan.electroshock.tungpat.databinding.FragmentDivisionBinding;
 
-public class SubstractionFragment extends Fragment {
+public class DivisionFragment extends Fragment {
 
-    FragmentSubstractionBinding binding;
+    FragmentDivisionBinding binding;
     private final ArrayList<Integer> answer = new ArrayList<>();
     private int locationOfCorrectAnswer, Tag;
     private int score=0;
@@ -33,25 +34,23 @@ public class SubstractionFragment extends Fragment {
     TextView question, correct, timer, points;
     Button button0, button1, button2, button3;
     ImageButton retry, mainMenu, save;
-    private int secondsLeft =0;
+    private int secondsLeft;
     private CountDownTimer countDown;
 
-    public SubstractionFragment() {
+    public DivisionFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSubstractionBinding.inflate(inflater, container, false);
+        binding = FragmentDivisionBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initWidgets(binding);
         play();
     }
@@ -75,18 +74,22 @@ public class SubstractionFragment extends Fragment {
         while(a <= b){
             b = random.nextInt(101);
         }
+        while(a <= 0 || b <= 0){
+            a = random.nextInt(101);
+            b = random.nextInt(101);
+        }
 
         int incorrectAnswer;
         locationOfCorrectAnswer = random.nextInt(4);
-        question.setText(getString(R.string.substract, a, b));
+        question.setText(getString(R.string.divide, a, b));
 
         answer.clear();
         for(int i=0;i<4;i++){
             if(i == locationOfCorrectAnswer){
-                answer.add(a - b);
+                answer.add(a / b);
             } else{
                 incorrectAnswer = random.nextInt(201);
-                while(incorrectAnswer == a - b){
+                while(incorrectAnswer == a / b){
                     incorrectAnswer = random.nextInt(201);
                 }
                 answer.add(incorrectAnswer);
@@ -122,7 +125,7 @@ public class SubstractionFragment extends Fragment {
         });
     }
 
-    private void chooseAnswer(int tag){
+    private void chooseAnswer(int tag) {
         correct.setVisibility(View.VISIBLE);
         if (tag == locationOfCorrectAnswer){
             score++;
@@ -220,20 +223,21 @@ public class SubstractionFragment extends Fragment {
         alert.show();
     }
 
-    private void initWidgets(FragmentSubstractionBinding binding) {
-        question = binding.subsTextView;
-        correct = binding.correctSubsTextView;
-        timer = binding.timerSubsTextView;
-        points = binding.pointsSubsTextView2;
-        button0 = binding.buttonSubs0;
-        button1 = binding.buttonSubs1;
-        button2 = binding.buttonSubs2;
-        button3 = binding.buttonSubs3;
-        retry = binding.subsRetry;
-        mainMenu = binding.subsMainMenu;
-        save = binding.subsSave;
+    private void initWidgets(FragmentDivisionBinding binding) {
+        question = binding.divideTextView;
+        correct = binding.correctDivideTextView;
+        timer = binding.timerDivideTextView;
+        points = binding.pointsDivideTextView2;
+        button0 = binding.buttonDivide0;
+        button1 = binding.buttonDivide1;
+        button2 = binding.buttonDivide2;
+        button3 = binding.buttonDivide3;
+        retry = binding.divideRetry;
+        mainMenu = binding.divideMainMenu;
+        save = binding.divideSave;
         correct.setVisibility(View.INVISIBLE);
         retry.setVisibility(View.GONE);
         mainMenu.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
     }
 }

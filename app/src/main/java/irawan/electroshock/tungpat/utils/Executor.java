@@ -1,4 +1,4 @@
-package irawan.electroshock.tungpat.data.utils;
+package irawan.electroshock.tungpat.utils;
 
 import android.util.Log;
 

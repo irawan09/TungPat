@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.room.Room;
 
 import irawan.electroshock.tungpat.data.model.UsersScore;
-import irawan.electroshock.tungpat.data.utils.Executor;
+import irawan.electroshock.tungpat.utils.Executor;
 
 public class CRUDRecords {
 
