@@ -1,4 +1,4 @@
-package irawan.electroshock.tungpat.data.database;
+package irawan.electroshock.tungpat.model.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -9,7 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import irawan.electroshock.tungpat.data.model.UsersScore;
+import irawan.electroshock.tungpat.model.UsersScore;
 
 @Dao
 public interface UserDao {

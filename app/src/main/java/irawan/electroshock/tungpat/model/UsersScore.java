@@ -1,6 +1,5 @@
-package irawan.electroshock.tungpat.data.model;
+package irawan.electroshock.tungpat.model;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
