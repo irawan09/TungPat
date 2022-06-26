@@ -17,11 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 import irawan.electroshock.tungpat.R;
 import irawan.electroshock.tungpat.databinding.AlertDialogTextEntryBinding;
 import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
+import irawan.electroshock.tungpat.model.UsersScore;
+import irawan.electroshock.tungpat.model.database.CRUDRecords;
 
 public class AdditionFragment extends Fragment {
 
@@ -199,9 +202,7 @@ public class AdditionFragment extends Fragment {
                         transaction.commit();
                     });
 
-                    save.setOnClickListener(view ->{
-                        saveAlertDialog();
-                    });
+                    save.setOnClickListener(view -> saveAlertDialog());
                 }));
                 ui.start();
 
@@ -220,16 +221,20 @@ public class AdditionFragment extends Fragment {
         alert.setIcon(R.drawable.ic_baseline_save);
         alert.setTitle(R.string.alert_dialog_text_entry);
         alert.setPositiveButton(R.string.alecrt_dialog_ok, (dialog, whichButton) -> {
-            /* User clicked OK so do some stuff */
-            String name =  dialogBinding.username.getText().toString().trim()+"";
+            String name =  Objects.requireNonNull(dialogBinding.username.getText()).toString().trim()+"";
             Log.i("Alert Dialog", name);
+
+            UsersScore usersScore = new UsersScore();
+            usersScore.setUsername(name);
+            usersScore.setScore(String.valueOf(score));
+            usersScore.setNumberOfQuestions(String.valueOf(numberOfQuestions));
+
+            CRUDRecords database = new CRUDRecords(requireContext());
+            database.insertUser(usersScore);
             dialog.dismiss();
 
         });
-        alert.setNegativeButton(R.string.alert_dialog_cancel, (dialog, whichButton) -> {
-            /* User clicked cancel so do some stuff */
-            dialog.cancel();
-        });
+        alert.setNegativeButton(R.string.alert_dialog_cancel, (dialog, whichButton) -> dialog.cancel());
         alert.create();
         alert.show();
     }
