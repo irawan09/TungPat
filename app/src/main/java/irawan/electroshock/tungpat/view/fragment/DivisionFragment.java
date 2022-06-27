@@ -23,6 +23,8 @@ import java.util.Random;
 import irawan.electroshock.tungpat.R;
 import irawan.electroshock.tungpat.databinding.AlertDialogTextEntryBinding;
 import irawan.electroshock.tungpat.databinding.FragmentDivisionBinding;
+import irawan.electroshock.tungpat.model.UsersScore;
+import irawan.electroshock.tungpat.model.database.CRUDRecords;
 
 public class DivisionFragment extends Fragment {
 
@@ -212,6 +214,15 @@ public class DivisionFragment extends Fragment {
             /* User clicked OK so do some stuff */
             String name =  dialogBinding.username.getText().toString().trim()+"";
             Log.i("Alert Dialog", name);
+
+            UsersScore usersScore = new UsersScore();
+            usersScore.setUsername(name);
+            usersScore.setScore(String.valueOf(score));
+            usersScore.setNumberOfQuestions(String.valueOf(numberOfQuestions));
+
+            CRUDRecords database = new CRUDRecords(requireContext());
+            database.insertUser(usersScore);
+            dialog.dismiss();
             dialog.dismiss();
 
         });
