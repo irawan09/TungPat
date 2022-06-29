@@ -223,7 +223,6 @@ public class DivisionFragment extends Fragment {
             CRUDRecords database = new CRUDRecords(requireContext());
             database.insertUser(usersScore);
             dialog.dismiss();
-            dialog.dismiss();
 
         });
         alert.setNegativeButton(R.string.alert_dialog_cancel, (dialog, whichButton) -> {
