@@ -11,13 +11,14 @@ import irawan.electroshock.tungpat.databinding.FragmentAdditionBinding;
 
 public class QuestionController {
     FragmentAdditionBinding bindingAddition;
+    TimerController timer;
     private final ArrayList<Integer> answer = new ArrayList<>();
     private int numberOfQuestions=0;
     private int score=0;
 
     private int locationOfCorrectAnswer, Tag;
 
-    private void generateAdditionQuestion(Context context){
+    public void generateAdditionQuestion(Context context){
         bindingAddition.button0.setVisibility(View.VISIBLE);
         bindingAddition.button1.setVisibility(View.VISIBLE);
         bindingAddition.button2.setVisibility(View.VISIBLE);
@@ -50,7 +51,7 @@ public class QuestionController {
         bindingAddition.pointsTextView2.setText(context.getResources().getString(R.string.results, score, numberOfQuestions));
         numberOfQuestions++;
 
-//        countDownTimer();
+        timer = new TimerController(score, numberOfQuestions);
 
         bindingAddition.button0.setOnClickListener(view1 -> {
             Tag = 0;
@@ -82,7 +83,8 @@ public class QuestionController {
             bindingAddition.correctTextView.setText(context.getResources().getString(R.string.wrong));
             bindingAddition.correctTextView.setTextColor(context.getResources().getColor(R.color.red));
         }
-//        countDown.cancel();
+
+        timer.countDown.cancel();
 //        play();
     }
 }
