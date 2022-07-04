@@ -31,11 +31,11 @@ public class TimerController {
     public TimerController(int score, int numberOfQuestions) {
         this.score = score;
         this.numberOfQuestions = numberOfQuestions;
-        AppController app = new AppController();
-        this.activity = (MainActivity)  app.getApplicationContext();
+        MainActivity app = new MainActivity();
+        this.activity = (MainActivity) app.getApplicationContext();
     }
 
-    private void countDownTimer(Context context){
+    public void countDownTimer(Context context){
         countDown = new CountDownTimer( 8000, 1000) {
 
             @Override
