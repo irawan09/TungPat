@@ -85,6 +85,7 @@ public class QuestionController {
         }
 
         timer.countDown.cancel();
-//        play();
+        GameController game = new GameController();
+        game.play(context);
     }
 }
